@@ -3,24 +3,18 @@ using UnityEngine;
 public class EnemyBehavior : MonoBehaviour
 {
     public float moveSpeed = 3f;
-    public float cooldown = 100f;
+    public int maxHealth = 20;
+    private int currentHealth;
     private Transform player;
     private Rigidbody2D rb;
-    private PlayerStats P;
-
-
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
         rb = GetComponent<Rigidbody2D>();
-
-        GameObject playerObject = GameObject.FindWithTag("Player");
-        if (playerObject != null)
-        {
-            P = playerObject.GetComponent<PlayerStats>();
-        }
-
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -29,35 +23,39 @@ public class EnemyBehavior : MonoBehaviour
         {
             Vector2 direction = (player.position - transform.position).normalized;
             rb.velocity = direction * moveSpeed;
-        }
-        if(cooldown > 0)
-        {
-            cooldown -= Time.deltaTime;
+
+            // Flip sprite based on movement direction
+            if (direction.x < 0)
+            {
+                spriteRenderer.flipX = true; // Flip the sprite to face left
+            }
+            else if (direction.x > 0)
+            {
+                spriteRenderer.flipX = false; // Flip the sprite to face right
+            }
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    public void TakeDamage(int damage)
     {
-        if (collider.gameObject.CompareTag("Player"))
+        currentHealth -= damage;
+        if (currentHealth <= 0)
         {
-            if(cooldown < 0)
-            {
-            P.playerHealth-=10;
-            Debug.Log("ow");
-            cooldown = 1;
-            }
+            Die();
         }
     }
-      void OnTriggerStay2D(Collider2D collider)
+
+    void Die()
     {
-        if (collider.gameObject.CompareTag("Player"))
+        // You can add more effects here like playing an animation or dropping loot
+        Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if(cooldown < 0)
-            {
-            P.playerHealth-=10;
-            Debug.Log("owie");
-            cooldown = 1;
-            }
+            // Handle collision with player (e.g., reduce player health)
         }
     }
 }
