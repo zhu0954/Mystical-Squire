@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public Slider healthBar; // Reference to the Slider component
+    public Slider XPBar;
     public PlayerStats playerStats; // Reference to the PlayerStats component
 
     void Start()
@@ -20,6 +21,12 @@ public class UI : MonoBehaviour
             healthBar.maxValue = playerStats.playerMaxHealth; // Set the max value of the slider
             healthBar.value = playerStats.playerHealth; // Set the current value of the slider
         }
+
+          if (XPBar != null && playerStats != null)
+        {
+             // Set the max value of the slider
+            XPBar.value = playerStats.playerXP; // Set the current value of the slider
+        }
     }
 
     void Update()
@@ -27,6 +34,11 @@ public class UI : MonoBehaviour
         if (healthBar != null && playerStats != null)
         {
             healthBar.value = playerStats.playerHealth; // Update the slider value based on current health
+        }
+         if (XPBar != null && playerStats != null)
+        {
+            XPBar.maxValue = playerStats.XPForNextLevel;
+            XPBar.value = playerStats.playerXP; // Update the slider value based on current XP
         }
     }
 }
