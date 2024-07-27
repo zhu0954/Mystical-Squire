@@ -5,12 +5,12 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private SpriteRenderer spriteRenderer;
+    private PlayerAnimation playerAnimation;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        playerAnimation = GetComponent<PlayerAnimation>();
     }
 
     void Update()
@@ -19,15 +19,8 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        // Flip sprite based on movement direction
-        if (movement.x < 0)
-        {
-            spriteRenderer.flipX = true; // Flip the sprite to face left
-        }
-        else if (movement.x > 0)
-        {
-            spriteRenderer.flipX = false; // Flip the sprite to face right
-        }
+        // Update animation based on movement
+        playerAnimation.UpdateAnimation(movement);
     }
 
     void FixedUpdate()
