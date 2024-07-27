@@ -5,7 +5,7 @@ public class EnemyBehavior : MonoBehaviour
     public float moveSpeed = 3f;
     public int maxHealth = 20;
     private int currentHealth;
-    public float cooldown = 100f;
+    public float cooldown = 1f;
     private Transform player;
     private Rigidbody2D rb;
     private PlayerStats P;
