@@ -3935,6 +3935,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4566139632169715010, guid: 3d0f12ec72548864aa7628c67b9c4607, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 3696257579279686474}
     - target: {fileID: 5980920204658627512, guid: 3d0f12ec72548864aa7628c67b9c4607, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4008,7 +4012,7 @@ MonoBehaviour:
   playerHealth: 100
   playerMaxHealth: 100
   playerXP: 0
-  Level: 0
+  Level: 1
   XPForNextLevel: 5
   XPIncreasePerLevel: 5
   Bonus: 0
