@@ -8,6 +8,7 @@ TagManager:
   - BlueXP
   - PurpleXP
   - YellowXP
+  - Obstacle
   layers:
   - Default
   - TransparentFX
