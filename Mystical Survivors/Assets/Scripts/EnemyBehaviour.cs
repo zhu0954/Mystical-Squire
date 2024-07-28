@@ -8,7 +8,7 @@ public class EnemyBehavior : MonoBehaviour
     public float cooldown = 1f;
     private Transform player;
     private Rigidbody2D rb;
-    private PlayerStats P;
+    private PlayerStats playerStats;
     private SpriteRenderer spriteRenderer;
 
 
@@ -21,7 +21,7 @@ public class EnemyBehavior : MonoBehaviour
         GameObject playerObject = GameObject.FindWithTag("Player");
         if (playerObject != null)
         {
-            P = playerObject.GetComponent<PlayerStats>();
+            playerStats = playerObject.GetComponent<PlayerStats>();
         }
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -72,10 +72,10 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            if (cooldown < 0)
+            if (cooldown <= 0)
             {
-                P.playerHealth -= 10;
-                Debug.Log("ow");
+                playerStats.TakeDamage(10); // Use the TakeDamage function from PlayerStats
+                Debug.Log("Player hit by enemy");
                 cooldown = 1;
             }
         }
@@ -84,10 +84,10 @@ public class EnemyBehavior : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            if (cooldown < 0)
+            if (cooldown <= 0)
             {
-                P.playerHealth -= 10;
-                Debug.Log("owie");
+                playerStats.TakeDamage(10); // Use the TakeDamage function from PlayerStats
+                Debug.Log("Player hit by enemy");
                 cooldown = 1;
             }
         }
