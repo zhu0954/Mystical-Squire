@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     public float playerMaxHealth = 100f;
     public int playerXP;
     public int Level;
-    public float XPForNextLevel = 5f;
+    public int XPForNextLevel = 5;
     public int XPIncreasePerLevel = 5;
     public int Bonus;
 
@@ -75,7 +75,7 @@ public class PlayerStats : MonoBehaviour
         Level++;
         Debug.Log("LEVEL UP!");
         Bonus = playerXP - (int)XPForNextLevel;
-        XPForNextLevel *= 2.5f;
+        XPForNextLevel *= 2;
         playerXP = 0;
         playerXP += Bonus;
     }
