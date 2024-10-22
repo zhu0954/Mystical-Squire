@@ -168,5 +168,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  maxHealth: 20
+  maxHealth: 10
   cooldown: 1
+  blueDropPrefab: {fileID: 6538745087532497943, guid: a981af086f0daf746bb15bd015b9e23f, type: 3}
+  purpleDropPrefab: {fileID: 4405584806993564893, guid: 8b1a46a188ba1224a94abce5ea721b40, type: 3}
+  yellowDropPrefab: {fileID: 1100343002346308372, guid: 6f981c2d8a95a5f46ab86da0dff192f1, type: 3}
+  blueDropChance: 0.6
+  purpleDropChance: 0.3
+  yellowDropChance: 0.1

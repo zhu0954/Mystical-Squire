@@ -11,7 +11,15 @@ public class EnemyBehavior : MonoBehaviour
     private PlayerStats playerStats;
     private SpriteRenderer spriteRenderer;
 
+    // Prefabs for different rarity drops
+    public GameObject blueDropPrefab;
+    public GameObject purpleDropPrefab;
+    public GameObject yellowDropPrefab;
 
+    // Rarity chances (adjust these values based on how common/rare you want each item)
+    [Range(0, 1)] public float blueDropChance = 0.6f;
+    [Range(0, 1)] public float purpleDropChance = 0.3f;
+    [Range(0, 1)] public float yellowDropChance = 0.1f;
 
     void Start()
     {
@@ -26,8 +34,6 @@ public class EnemyBehavior : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
-
-
     }
 
     void Update()
@@ -64,7 +70,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Die()
     {
-        // You can add more effects here like playing an animation or dropping loot
+        DropItem();  // Call the method to drop an item
         Destroy(gameObject);
     }
 
@@ -80,6 +86,7 @@ public class EnemyBehavior : MonoBehaviour
             }
         }
     }
+
     void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
@@ -90,6 +97,25 @@ public class EnemyBehavior : MonoBehaviour
                 Debug.Log("Player hit by enemy");
                 cooldown = 1;
             }
+        }
+    }
+
+    // Method to drop an item based on rarity
+    void DropItem()
+    {
+        float randomValue = Random.Range(0f, 1f); // Generate a random value between 0 and 1
+
+        if (randomValue <= yellowDropChance)
+        {
+            Instantiate(yellowDropPrefab, transform.position, Quaternion.identity); // Drop yellow item
+        }
+        else if (randomValue <= purpleDropChance + yellowDropChance)
+        {
+            Instantiate(purpleDropPrefab, transform.position, Quaternion.identity); // Drop purple item
+        }
+        else
+        {
+            Instantiate(blueDropPrefab, transform.position, Quaternion.identity); // Drop blue item
         }
     }
 }
