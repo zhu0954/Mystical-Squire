@@ -212,6 +212,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 5458836707420379585, guid: e16aa2f9297bed14faf98ac4db489bb5, type: 3}
   firePoint: {fileID: 4938250485486775909}
+  playerStats: {fileID: 5709804220395015235}
+  attackSpeed: 3
+  resetAttackSpeed: 0
 --- !u!114 &6792391780257874704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +246,11 @@ MonoBehaviour:
   XPForNextLevel: 5
   XPIncreasePerLevel: 5
   Bonus: 0
+  damage: 10
+  speed: 5
+  upgradeManager: {fileID: 0}
+  upgradePanel: {fileID: 0}
+  upgradeButtons: []
 --- !u!1 &7774233490487041280
 GameObject:
   m_ObjectHideFlags: 0

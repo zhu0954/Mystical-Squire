@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;
     private Rigidbody2D rb;
     private Vector2 movement;
     private PlayerAnimation playerAnimation;
+    private PlayerStats playerStats;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerAnimation = GetComponent<PlayerAnimation>();
+        playerStats = GetComponent<PlayerStats>();
+
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStats component not found on the player object.");
+        }
     }
 
     void Update()
@@ -25,7 +31,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Move the character
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if (playerStats != null)
+        {
+            // Move the character using the speed from PlayerStats
+            rb.MovePosition(rb.position + movement * playerStats.speed * Time.fixedDeltaTime);
+        }
     }
 }
